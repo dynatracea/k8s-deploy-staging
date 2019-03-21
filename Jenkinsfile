@@ -62,6 +62,14 @@ pipeline {
       }
     }
     
+        stage('Warmup the fire my dudes') {
+      steps {
+        container('kubectl') {
+          sh "kubectl rollout status deployment carts-v1 -n production"
+        }
+      }
+    }
+
     
     // DO NOT uncomment until 10_01 Lab
     
@@ -105,6 +113,6 @@ pipeline {
         )
       }
     }
-    
+
   }
 }
